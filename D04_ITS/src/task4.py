@@ -1,7 +1,7 @@
 people_limit = 4
 people = []
-
-while True:
+client = 0
+while (client < people_limit):
     print("-" * 50)
     print("Введите:")
     print(" - 1, если хотите добавить пациента в очередь;")
@@ -13,28 +13,27 @@ while True:
     choice = input()
 
     if choice == '1':
-        if len(people) < people_limit:
-            print("-" * 50)
-            print("Введите:")
-            print(" - 1, если хотите добавить пациента в конец очереди;")
-            print(" - 2, если хотите добавить пациента в начало или середину очереди.")
-            print("-" * 50)
-            sub_choice = input()
+        print("-" * 50)
+        print("Введите:")
+        print(" - 1, если хотите добавить пациента в конец очереди;")
+        print(" - 2, если хотите добавить пациента в начало или середину очереди.")
+        print("-" * 50)
+        sub_choice = input()
 
-            fio = input("Введите ФИО пациента: ")
+        newpeople = input("Введите ФИО пациента: ").title()
 
-            if fio in people:
-                print("Такой пациент уже есть в очереди!")
-            else:
-                if sub_choice == '1':
-                    people.append(fio)
-                elif sub_choice == '2':
-                    pos = int(input("Введите на какое место очереди хотите вставить пациента: ")) - 1
-                    people.insert(pos, fio)
+        if newpeople in people:
+            print("Такой пациент уже есть в очереди!")
+            
         else:
-            print("Очередь наполнена!")
-            print(f"Текущая очередь - {people}")
-            break
+            if sub_choice == '1':
+                client += 1
+                people.append(newpeople)
+            elif sub_choice == '2':
+                pos = int(input("Введите на какое место очереди хотите вставить пациента: ")) - 1
+                people.insert(pos, newpeople)
+                client += 1
+
     elif choice == '2':
         print("-" * 50)
         print("Введите:")
@@ -44,14 +43,16 @@ while True:
         sub_choice = input()
 
         if sub_choice == '1':
-            fio = input("Введите ФИО пациента: ")
-            if fio in people:
-                people.remove(fio)
+            newpeople = input("Введите ФИО пациента: ")
+            if newpeople in people:
+                client += 1
+                people.remove(newpeople)
             else:
                 print("Такого пациента нет в очереди!")
         elif sub_choice == '2':
             index = int(input("Введите порядковый номер человека в очереди: ")) - 1
             if 0 <= index < len(people):
+                client += 1
                 people.pop(index)
             else:
                 print("Такого пациента нет в очереди!")

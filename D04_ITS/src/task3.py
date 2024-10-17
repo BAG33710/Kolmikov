@@ -1,7 +1,8 @@
 people_limit = 4
 people = set()
+client = 0
 
-while True:
+while (client < people_limit):
     print("-" * 50)
     print("Введите:")
     print(" - 1, если хотите добавить пациента в очередь;")
@@ -13,17 +14,14 @@ while True:
     choice = input()
 
     if choice == '1':
-        if len(people) < people_limit:
-            fio = input("Введите ФИО пациента: ").strip()
-            people.add(fio)
-        else:
-            print("Очередь наполнена!")
-            print(f"Текущая очередь - {people}")
-            break
+        client += 1
+        newpeople = input("Введите ФИО пациента: ").title()
+        people.add(newpeople)
     elif choice == '2':
-        fio = input("Введите ФИО пациента, которого надо удалить из очереди: ")
-        if fio in people:
-            people.remove(fio)
+        newpeople = input("Введите ФИО пациента, которого надо удалить из очереди: ").title()
+        if newpeople in people:
+            client -= 1
+            people.remove(newpeople)
         else:
             print("Такого пациента нет в очереди!")
     elif choice == '3':
