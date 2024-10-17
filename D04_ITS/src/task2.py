@@ -5,7 +5,8 @@ while (True):
     print("-" * 50)
     print("Введите:")
     print(" - 1, если хотите добавить пациента в очередь;")
-    print(" - 2, если хотите посмотреть текущую очередь.")
+    print(" - 2, если хотите посмотреть текущую очередь;")
+    print(" - 3, если хотите прекратить работу программы и посмотреть получившуюся очередь.")
     print("-" * 50)
 
     choice = input()
@@ -18,6 +19,7 @@ while (True):
             else:
                 people = fio
         else:
+            print("Очередь наполнена!")
             print(f"Текущая очередь - {people}")
             break
     elif choice == '2':
@@ -25,3 +27,9 @@ while (True):
             print(f"Текущая очередь - {people}")
         else:
             print("Очередь пустая!")
+    elif choice == '3': 
+        if len(people) > 0:
+            print(f"Текущая очередь - {people}")
+        else:
+            print("Очередь пустая!")
+        break
